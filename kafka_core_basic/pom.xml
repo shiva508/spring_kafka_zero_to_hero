@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.pool</groupId>
+        <artifactId>spring_kafka_zero_to_hero</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>kafka_core_basic</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>kafka-wiki</module>
+        <module>kafka_basic</module>
+        <module>kafka-wiki-opensearch</module>
+        <module>kafka-elastic-search</module>
+        <module>kafka-streams</module>
+        <module>kafka-twitter</module>
+    </modules>
+
+    <properties>
+        <java.version>17</java.version>
+    </properties>
+
+</project>
