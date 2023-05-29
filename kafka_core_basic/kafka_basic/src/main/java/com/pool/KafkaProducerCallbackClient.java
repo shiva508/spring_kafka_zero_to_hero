@@ -24,7 +24,6 @@ public class KafkaProducerCallbackClient {
         KafkaProducer<String, String> kafkaProducer=new KafkaProducer<>(properties);
 		String topic="batman";
         for (int i=0;i<10;i++) {
-
         	String key="ID_"+i;
         	ProducerRecord<String, String> producerRecord=new ProducerRecord<String, String>(topic,key, "USING CALL BACK Bigining to kafka "+i);
             kafkaProducer.send(producerRecord,new Callback() {
