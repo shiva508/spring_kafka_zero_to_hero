@@ -6,7 +6,6 @@ import java.util.Properties;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
-import org.apache.kafka.common.serialization.Deserializer;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,7 +37,7 @@ public class KafkaConsumerClient {
 		});
 
 		try {
-			consumer.subscribe(Arrays.asList("important_tweets", "first-topic", "second_topic"));
+			consumer.subscribe(Arrays.asList("important_tweets", "first-topic", "second_topic","batman"));
 			while (true) {
 				ConsumerRecords<String, String> consumerRecords = consumer.poll(Duration.ofMillis(100));
 				consumerRecords.forEach(data -> {

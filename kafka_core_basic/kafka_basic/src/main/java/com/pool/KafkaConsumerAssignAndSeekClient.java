@@ -19,7 +19,7 @@ public class KafkaConsumerAssignAndSeekClient {
 	public static void main(String[] args) {
 		Logger logger = LoggerFactory.getLogger(KafkaConsumerAssignAndSeekClient.class);
 		Properties properties = new Properties();
-		String topic = "first-topic";
+		String topic = "batman";
 		properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
 		properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
 		properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());

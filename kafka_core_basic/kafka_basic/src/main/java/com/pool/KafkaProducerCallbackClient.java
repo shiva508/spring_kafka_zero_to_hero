@@ -22,8 +22,9 @@ public class KafkaProducerCallbackClient {
         properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG , StringSerializer.class.getName());
         properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         KafkaProducer<String, String> kafkaProducer=new KafkaProducer<>(properties);
+		String topic="batman";
         for (int i=0;i<10;i++) {
-        	String topic="first-topic";
+
         	String key="ID_"+i;
         	ProducerRecord<String, String> producerRecord=new ProducerRecord<String, String>(topic,key, "USING CALL BACK Bigining to kafka "+i);
             kafkaProducer.send(producerRecord,new Callback() {
@@ -38,7 +39,7 @@ public class KafkaProducerCallbackClient {
     				}else {
     					logger.info("ERROR OCCURED");
     				}
-    				
+
     			}
     		});
 			
