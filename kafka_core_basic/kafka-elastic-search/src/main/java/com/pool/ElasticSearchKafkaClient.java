@@ -13,8 +13,7 @@ import org.elasticsearch.common.xcontent.XContentType;
 
 public class ElasticSearchKafkaClient {
 	public static void main(String[] args) throws IOException {
-		KafkaConsumer<String, String> kafkaConsumerClient = KafkaConsumerClient
-				.kafkaConsumerClientInstance(ElasticSearchUtil.GROUP_ID, ElasticSearchUtil.BOOTSTRAP_SERVER,ElasticSearchUtil.TOPICS);
+		KafkaConsumer<String, String> kafkaConsumerClient = KafkaConsumerClient.kafkaConsumerClientInstance(ElasticSearchUtil.GROUP_ID, ElasticSearchUtil.BOOTSTRAP_SERVER,ElasticSearchUtil.TOPICS);
 		ElasticSingletonClient elasticSingletonClient = ElasticSingletonClient.getSingletonInstance();
 		RestHighLevelClient highLevelClient = elasticSingletonClient.getHighLevelClient();
 		while (true) {

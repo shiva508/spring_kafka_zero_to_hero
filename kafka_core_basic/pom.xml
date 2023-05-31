@@ -18,6 +18,8 @@
         <module>kafka-elastic-search</module>
         <module>kafka-streams</module>
         <module>kafka-twitter</module>
+        <module>kafka_wiki_elastic_search_producer</module>
+        <module>kafka_wiki_elastic_search_consumer</module>
     </modules>
 
     <properties>

@@ -1,0 +1,14 @@
+ {"namespace": "com.pool.avro.model",
+   "type": "record",
+   "name": "WikiAnalyticsAvroModel",
+   "fields": [
+    {"name": "id", "type": ["null", "long"]},
+ 	{"name": "type", "type": ["null", "string"]},
+ 	{"name": "title_url", "type": ["null", "string"]},
+ 	{"name": "comment", "type": ["null", "string"]},
+ 	{"name": "user", "type": ["null", "string"]},
+ 	{"name": "bot", "type": ["null", "string"]},
+ 	{"name": "minor", "type": ["null", "string"]},
+ 	{"name": "notify_url", "type": ["null", "string"]}
+   ]
+ }

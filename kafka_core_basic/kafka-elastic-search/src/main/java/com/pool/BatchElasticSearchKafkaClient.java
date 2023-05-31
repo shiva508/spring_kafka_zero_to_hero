@@ -22,7 +22,7 @@ public class BatchElasticSearchKafkaClient {
 		RestHighLevelClient highLevelClient = elasticSingletonClient.getHighLevelClient();
 		while (true) {
 			ConsumerRecords<String, String> consumerRecords = kafkaConsumerClient.poll(Duration.ofMillis(100));
-			Integer recordCount=consumerRecords.count();
+			int recordCount=consumerRecords.count();
 			System.out.println("NUMBER OF RECORDS RECEIVED:"+recordCount);
 			BulkRequest bulkRequest=new BulkRequest();
 			for (ConsumerRecord<String, String> consumerRecord : consumerRecords) {
@@ -36,8 +36,6 @@ public class BatchElasticSearchKafkaClient {
 				}else {
 					System.out.println("BAD DATA:"+consumerRecord.value());
 				}
-				
-
 			}
 			if(recordCount>0) {
 				BulkResponse bulkResponse=highLevelClient.bulk(bulkRequest, RequestOptions.DEFAULT);

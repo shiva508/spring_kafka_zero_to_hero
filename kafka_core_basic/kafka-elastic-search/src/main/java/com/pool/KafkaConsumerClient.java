@@ -27,6 +27,4 @@ public class KafkaConsumerClient {
 	public static String extractUniqueId(JsonParser jsonParser, String jsonObject,String jsonKey) {
 		return jsonParser.parse(jsonObject).getAsJsonObject().get(jsonKey).getAsString();
 	}
-
-	
 }
