@@ -1,0 +1,16 @@
+spring:
+  cloud:
+    function:
+      definition: producer
+    stream:
+      kafka:
+        binder:
+          brokers: localhost:9092
+        bindings:
+          producer-out-0:
+            producer:
+              configuration:
+                key.serializer: org.apache.kafka.common.serialization.StringSerializer
+      bindings:
+        producer-out-0:
+          destination: first-topic
