@@ -6,6 +6,7 @@ import com.pool.util.Deportment;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.KeyValue;
 import org.apache.kafka.streams.kstream.*;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.support.KafkaHeaders;
@@ -22,6 +23,7 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 @Configuration
+@ConditionalOnProperty(name = "enable.comrade-kafka",havingValue = "true")
 public class ComradeKafkaProducerConfig {
 
     @Bean
@@ -44,13 +46,13 @@ public class ComradeKafkaProducerConfig {
     @Bean
     public Function<KStream<String,ComradeEvent>,KStream<String,String>> messageAggregate(){
         return inputEnhanced->inputEnhanced
-                //.peek((key, value) -> System.out.println("Key="+key+",Value"+value))
+                .peek((key, value) -> System.out.println("Key="+key+",Value"+value))
                 .groupByKey()
                 .windowedBy(TimeWindows.ofSizeWithNoGrace(Duration.ofSeconds(8)))
                 .aggregate(() -> 0l,(key, value, aggregate)->aggregate+1, Materialized.with(Serdes.String(),Serdes.Long()))
                 .suppress(Suppressed.untilWindowCloses(Suppressed.BufferConfig.unbounded()))
                 .toStream()
-                .map((stringWindowed, aLong) -> new KeyValue<>(stringWindowed.key() , aLong.toString()));
+                .map((stringWindowed, aLong) -> new KeyValue<>(stringWindowed.key(), aLong.toString()));
     }
 
     @Bean

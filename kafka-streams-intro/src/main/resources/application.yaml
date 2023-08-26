@@ -1,48 +1,46 @@
 spring:
   cloud:
     function:
-      definition: messageProducer;messageEnhancer;messageAggregate;messageJoin
+      definition: nameProducer;wordCountProcess;wordCountHandler
     stream:
       kafka:
         binder:
           brokers: localhost:9092
         bindings:
-          messageProducer-out-0:
+          nameProducer-out-0:
             producer:
               configuration:
                 key.serializer: org.apache.kafka.common.serialization.StringSerializer
         streams:
           bindings:
-            messageEnhancer-in-0:
+            wordCountProcess-in-0:
               consumer:
                 keySerde: org.apache.kafka.common.serialization.Serdes$StringSerde
-                valueSerde: com.pool.config.serdeser.ComradeSerDeser
-            messageAggregate-in-0:
+                valueSerde: com.pool.config.serdes.WordSerDe
+            wordCountHandler-in-0:
               consumer:
                 keySerde: org.apache.kafka.common.serialization.Serdes$StringSerde
-                valueSerde: com.pool.config.serdeser.ComradeSerDeser
-            messageJoin-out-0:
-              producer:
-                keySerde: org.apache.kafka.common.serialization.Serdes$StringSerde
-                valueSerde: com.pool.config.serdeser.JoinedValueSerDeser
+                valueSerde: org.apache.kafka.common.serialization.Serdes$StringSerde
+#            wordCountProcess-out-0:
+#              producer:
+#                keySerde: org.apache.kafka.common.serialization.Serdes$StringSerde
+#                valueSerde: org.apache.kafka.common.serialization.Serdes$StringSerde
           binder:
             configuration:
               commit.interval.ms: 2000
-
       bindings:
-        messageProducer-out-0:
-          destination: first-topic
-        messageEnhancer-in-0:
-          destination: first-topic
-        messageEnhancer-out-0:
-          destination: second-topic
-        messageAggregate-in-0:
-          destination: first-topic
-        messageAggregate-out-0:
-          destination: third-topic
-        messageJoin-in-0:
-          destination: second-topic
-        messageJoin-in-1:
-          destination: third-topic
-        messageJoin-out-0:
-          destination: forth-topic
+        nameProducer-out-0:
+          destination: news-1-topic
+        wordCountProcess-in-0:
+          destination: news-1-topic
+        wordCountProcess-out-0:
+          destination: news-1-count-topic
+        wordCountHandler-in-0:
+          destination: news-1-count-topic
+        wordCountHandler-out-0:
+          destination: news-2-count-topic
+
+enable:
+  comrade-kafka: false
+  basic-kafka: true
+

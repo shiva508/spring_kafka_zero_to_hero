@@ -1,12 +1,8 @@
 package com.pool.modal;
 
+import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Entity
 @Table(name = "KAFKA_USER_PROFILE")

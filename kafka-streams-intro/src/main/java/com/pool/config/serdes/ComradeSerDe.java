@@ -1,7 +1,7 @@
-package com.pool.config.serdeser;
+package com.pool.config.serdes;
 
 import com.pool.model.ComradeEvent;
 import org.springframework.kafka.support.serializer.JsonSerde;
 
-public class ComradeSerDeser extends JsonSerde<ComradeEvent> {
+public class ComradeSerDe extends JsonSerde<ComradeEvent> {
 }

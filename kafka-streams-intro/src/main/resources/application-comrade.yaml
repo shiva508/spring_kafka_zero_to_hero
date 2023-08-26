@@ -1,0 +1,52 @@
+spring:
+  cloud:
+    function:
+      definition: messageProducer;messageEnhancer;messageAggregate;messageJoin
+    stream:
+      kafka:
+        binder:
+          brokers: localhost:9092
+        bindings:
+          messageProducer-out-0:
+            producer:
+              configuration:
+                key.serializer: org.apache.kafka.common.serialization.StringSerializer
+        streams:
+          bindings:
+            messageEnhancer-in-0:
+              consumer:
+                keySerde: org.apache.kafka.common.serialization.Serdes$StringSerde
+                valueSerde: com.pool.config.serdeser.ComradeSerDeser
+            messageAggregate-in-0:
+              consumer:
+                keySerde: org.apache.kafka.common.serialization.Serdes$StringSerde
+                valueSerde: com.pool.config.serdeser.ComradeSerDeser
+            messageJoin-out-0:
+              producer:
+                keySerde: org.apache.kafka.common.serialization.Serdes$StringSerde
+                valueSerde: com.pool.config.serdeser.JoinedValueSerDeser
+          binder:
+            configuration:
+              commit.interval.ms: 2000
+
+      bindings:
+        messageProducer-out-0:
+          destination: first-topic
+        messageEnhancer-in-0:
+          destination: first-topic
+        messageEnhancer-out-0:
+          destination: second-topic
+        messageAggregate-in-0:
+          destination: first-topic
+        messageAggregate-out-0:
+          destination: third-topic
+        messageJoin-in-0:
+          destination: second-topic
+        messageJoin-in-1:
+          destination: third-topic
+        messageJoin-out-0:
+          destination: forth-topic
+
+enable:
+  comrade-kafka: false
+  basic-kafka: true
