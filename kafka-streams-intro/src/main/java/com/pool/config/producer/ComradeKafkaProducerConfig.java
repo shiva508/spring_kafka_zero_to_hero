@@ -1,13 +1,11 @@
 package com.pool.config.producer;
 
 import com.pool.model.ComradeEvent;
+import com.pool.model.JoinedValue;
 import com.pool.util.Deportment;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.KeyValue;
-import org.apache.kafka.streams.kstream.KStream;
-import org.apache.kafka.streams.kstream.Materialized;
-import org.apache.kafka.streams.kstream.Suppressed;
-import org.apache.kafka.streams.kstream.TimeWindows;
+import org.apache.kafka.streams.kstream.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.support.KafkaHeaders;
@@ -15,9 +13,11 @@ import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
 
 import java.time.Duration;
+import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -51,5 +51,12 @@ public class ComradeKafkaProducerConfig {
                 .suppress(Suppressed.untilWindowCloses(Suppressed.BufferConfig.unbounded()))
                 .toStream()
                 .map((stringWindowed, aLong) -> new KeyValue<>(stringWindowed.key() , aLong.toString()));
+    }
+
+    @Bean
+    public BiFunction<KStream<String,String>,KStream<String,String>,KStream<String, JoinedValue>> messageJoin(){
+        return (inputValueOne,inputValueTwo)->inputValueOne.join(inputValueTwo, JoinedValue::new,
+                                                                 JoinWindows.ofTimeDifferenceWithNoGrace(Duration.of(10, ChronoUnit.SECONDS)),
+                                                                 StreamJoined.with(Serdes.String(),Serdes.String(),Serdes.String()));
     }
 }

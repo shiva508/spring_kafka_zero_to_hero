@@ -1,7 +1,7 @@
 spring:
   cloud:
     function:
-      definition: messageProducer;messageEnhancer;messageAggregate
+      definition: messageProducer;messageEnhancer;messageAggregate;messageJoin
     stream:
       kafka:
         binder:
@@ -21,6 +21,10 @@ spring:
               consumer:
                 keySerde: org.apache.kafka.common.serialization.Serdes$StringSerde
                 valueSerde: com.pool.config.serdeser.ComradeSerDeser
+            messageJoin-out-0:
+              producer:
+                keySerde: org.apache.kafka.common.serialization.Serdes$StringSerde
+                valueSerde: com.pool.config.serdeser.JoinedValueSerDeser
           binder:
             configuration:
               commit.interval.ms: 2000
@@ -36,3 +40,9 @@ spring:
           destination: first-topic
         messageAggregate-out-0:
           destination: third-topic
+        messageJoin-in-0:
+          destination: second-topic
+        messageJoin-in-1:
+          destination: third-topic
+        messageJoin-out-0:
+          destination: forth-topic

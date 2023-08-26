@@ -1,4 +1,4 @@
 package com.pool.model;
 
-public record JoinedValue(String valueOne,String valueTwo) {
+public record JoinedValue(String name,String noOfOccurrence) {
 }
