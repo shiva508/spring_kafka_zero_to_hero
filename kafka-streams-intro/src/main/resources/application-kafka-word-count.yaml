@@ -1,19 +1,19 @@
 spring:
   cloud:
     function:
-      definition: nameModifiedProducer;wordCountModifiedProcess
+      definition: nameProducer;wordCountProcess;wordCountHandler
     stream:
       kafka:
         binder:
           brokers: localhost:9092
         bindings:
-          nameModifiedProducer-out-0:
+          nameProducer-out-0:
             producer:
               configuration:
                 key.serializer: org.apache.kafka.common.serialization.StringSerializer
         streams:
           bindings:
-            wordCountModifiedProcess-in-0:
+            wordCountProcess-in-0:
               consumer:
                 keySerde: org.apache.kafka.common.serialization.Serdes$StringSerde
                 valueSerde: com.pool.config.serdes.WordSerDe
@@ -21,24 +21,27 @@ spring:
               consumer:
                 keySerde: org.apache.kafka.common.serialization.Serdes$StringSerde
                 valueSerde: org.apache.kafka.common.serialization.Serdes$StringSerde
+#            wordCountProcess-out-0:
+#              producer:
+#                keySerde: org.apache.kafka.common.serialization.Serdes$StringSerde
+#                valueSerde: org.apache.kafka.common.serialization.Serdes$StringSerde
           binder:
             configuration:
               commit.interval.ms: 2000
       bindings:
-        nameModifiedProducer-out-0:
-          destination: news-11-topic
-        wordCountModifiedProcess-in-0:
-          destination: news-11-topic
-        wordCountModifiedProcess-out-0:
-          destination: news-11-count-topic
+        nameProducer-out-0:
+          destination: news-1-topic
+        wordCountProcess-in-0:
+          destination: news-1-topic
+        wordCountProcess-out-0:
+          destination: news-1-count-topic
         wordCountHandler-in-0:
-          destination: news-11-count-topic
+          destination: news-1-count-topic
         wordCountHandler-out-0:
-          destination: news-21-count-topic
+          destination: news-2-count-topic
 
 enable:
   comrade-kafka: false
   basic-kafka: false
-  modified-kafka: true
-
+  modified-kafka: false
 

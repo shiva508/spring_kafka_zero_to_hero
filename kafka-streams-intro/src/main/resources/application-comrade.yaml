@@ -49,4 +49,5 @@ spring:
 
 enable:
   comrade-kafka: false
-  basic-kafka: true
+  basic-kafka: false
+  modified-kafka: false
