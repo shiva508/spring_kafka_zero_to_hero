@@ -1,6 +1,5 @@
 package com.pool;
 
-import java.util.Iterator;
 import java.util.Properties;
 
 import org.apache.kafka.clients.producer.Callback;
@@ -18,7 +17,7 @@ public class KafkaProducerCallbackClient {
     {
 		final Logger logger=LoggerFactory.getLogger(KafkaProducerCallbackClient.class);
         Properties properties=new Properties();
-        properties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+        properties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "172.21.0.3:9092");
         properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG , StringSerializer.class.getName());
         properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         KafkaProducer<String, String> kafkaProducer=new KafkaProducer<>(properties);

@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.0.4</version>
+		<version>3.1.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.pool</groupId>
@@ -23,7 +23,9 @@
         <module>spring_cloud_kafka_integration</module>
 		<module>spring_kafka_consumer</module>
         <module>kafka-streams-intro</module>
-    </modules>
+        <module>kafka-ui</module>
+		<module>spring-kafka-admin-ui</module>
+	</modules>
 	<properties>
 		<java.version>17</java.version>
 		<swagger2-version>2.6.1</swagger2-version>
