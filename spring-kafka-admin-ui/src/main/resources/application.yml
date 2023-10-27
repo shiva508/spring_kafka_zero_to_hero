@@ -1,4 +1,12 @@
+server:
+  port: 8008
 spring:
+  application:
+    name: spring-kafka-admin-ui
   kafka:
     bootstrap-servers:
       - "172.21.0.3:9092"
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
