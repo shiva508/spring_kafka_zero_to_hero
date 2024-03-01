@@ -15,7 +15,7 @@
 	<name>spring_kafka_zero_to_hero</name>
 	<description>Demo project for Spring Boot</description>
 	<modules>
-		<module>spring_kafka_basic_integration</module>
+		<module>spring-kafka-basic-integration</module>
 		<module>kafka_core_basic</module>
 		<module>kafka_core_basic/kafka_basic</module>
         <module>kafka_core_basic/kafka-wiki-opensearch</module>

@@ -24,7 +24,6 @@ public class KafkaAdminOperationsController {
     public List<String> getAllTopics(){
         return kafkaAdminOperationsService.getAllTopics();
     }
-
     @GetMapping("/info/{topicName}")
     public void getTopicInfo(@PathVariable("topicName") String topicName){
         kafkaAdminOperationsService.getTopicInfo(topicName);
